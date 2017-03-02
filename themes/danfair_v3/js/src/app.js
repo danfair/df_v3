@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import About from './About';
+import routes from './config/routes';
 
 ReactDOM.render(
-  <h1>Hello, world! What's up? Heyo</h1>,
+  routes,
   document.getElementById('content')
 );
