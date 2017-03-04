@@ -143,3 +143,14 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'DF Settings',
+		'menu_title'	=> 'DF Settings',
+		'menu_slug' 	=> 'df-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+}

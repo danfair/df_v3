@@ -24,7 +24,7 @@ class Header extends Component {
     axios.get('/wp-json/wp-api-menus/v2/menus/2')
       .then((response) => {
         this.setState({
-          menuItems: response.data.items.map(function(menuItem) {
+          menuItems: response.data.items.map((menuItem) => {
             return (
               <li key={menuItem.id}>
                 {menuItem.title}
