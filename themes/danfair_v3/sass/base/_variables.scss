@@ -1,0 +1,33 @@
+$color-white: #fff;
+$color-black: #000;
+$color-orange: #ff6600;
+$color-gray: #b7b7b7;
+$color-light-gray: #d4d1d1;
+$color-light: #e9e9e9;
+$color-lighter: #f4f4f4;
+$color-dark-gray: #707070;
+
+$font-heading: 'Montserrat', 'Helvetica', sans-serif;
+$font-body: 'Merriweather', 'Georgia', 'Times New Roman', serif;
+
+$linear: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+$ease: cubic-bezier(0.250, 0.100, 0.250, 1.000);
+$easeIn: cubic-bezier(0.420, 0.000, 1.000, 1.000);
+$easeOut: cubic-bezier(0.000, 0.000, 0.580, 1.000);
+$easeInOut: cubic-bezier(0.420, 0.000, 0.580, 1.000);
+$easeInQuad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
+$easeOutQuad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+
+$transition-ease: $easeOutQuad;
+$transition-speed: 0.3s;
+$transition-speed-fast: 0.1s;
+$transition-speed-slow: 0.5s;
+$transition-delay: 0.1s;
+
+// for breakpoint sass
+// matches reflex grid
+$x-small: 480px;
+$small: 768px;
+$medium: 992px;
+$large: 1200px;
+$x-large: 1600px;
