@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import axios from 'axios';
 
 class Header extends Component {
@@ -10,7 +10,7 @@ class Header extends Component {
     }
   }
 
-  render() {
+  render(props) {
     return (
       <div>
         <ul>
@@ -27,7 +27,7 @@ class Header extends Component {
           menuItems: response.data.items.map((menuItem) => {
             return (
               <li key={menuItem.id}>
-                {menuItem.title}
+                <Link to={menuItem.object_slug}>{menuItem.title}</Link>
               </li>
             )
           })
