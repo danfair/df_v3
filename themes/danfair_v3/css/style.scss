@@ -1,5 +1,54 @@
-/*@import 'base/typography';*/
+@import 'base/vars';
+@import 'base/reset';
+@import 'base/mixins';
+@import 'base/typography';
+@import 'base/button';
 
-html {
-  display: none;
+body {
+	padding-top: 50px;
+
+	@include responsive(small) {
+		padding-top: 70px;
+	}
 }
+
+.container {
+	width: calc(100% - 30px);
+	max-width: 1040px;
+	padding: 0 15px;
+	margin: 0 auto;
+
+	@include responsive(large) {
+		padding: 0 50px;
+		width: calc(100% - 100px);
+	}
+}
+
+	.container--wide {
+		max-width: 1170px;
+	}
+
+.site-blocker {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: $color-black;
+	opacity: 0;
+	z-index: -1;
+	transition: opacity $transition-speed $transition-ease;
+	pointer-events: none;
+
+	&.is-open {
+		opacity: 0.5;
+		z-index: 100;
+		pointer-events: unset;
+
+		@include responsive(small) {
+			display: none;
+		}
+	}
+}
+
+@import 'components/header';

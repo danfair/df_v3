@@ -105,7 +105,7 @@ add_action( 'widgets_init', 'danfair_v3_widgets_init' );
  * Enqueue scripts and styles.
  */
 function danfair_v3_scripts() {
-	wp_enqueue_style( 'danfair_v3-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'danfair_v3-style', get_template_directory_uri() . '/css/style.css' );
 
 	wp_enqueue_script( 'danfair_v3-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 

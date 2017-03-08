@@ -13851,38 +13851,68 @@ var Header = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
 
     _this.state = {
-      menuItems: []
+      menuItems: [],
+      mobileMenuIsOpen: false
     };
+
+    _reactRouter.browserHistory.listen(function (event) {
+      if (_this.state.mobileMenuIsOpen) {
+        _this.toggleMenu();
+      }
+    });
+
+    _this.toggleMenu = _this.toggleMenu.bind(_this);
     return _this;
   }
 
   _createClass(Header, [{
+    key: 'toggleMenu',
+    value: function toggleMenu() {
+      this.setState({
+        mobileMenuIsOpen: !this.state.mobileMenuIsOpen
+      });
+    }
+  }, {
     key: 'render',
     value: function render(props) {
-      var themeDirectory = 'wp-content/themes/danfair_v3';
+      var themeDirectory = '/wp-content/themes/danfair_v3';
 
       return _react2.default.createElement(
-        'nav',
+        'div',
         null,
         _react2.default.createElement(
-          'div',
-          null,
+          'header',
+          { className: this.state.mobileMenuIsOpen ? 'header mobile-menu-open' : 'header' },
           _react2.default.createElement(
-            _reactRouter.Link,
-            { to: '/' },
-            _react2.default.createElement('img', { src: themeDirectory + '/img/df.svg', alt: 'Dan Fair' }),
+            'div',
+            { className: 'container container--wide' },
             _react2.default.createElement(
-              'span',
-              null,
-              'DAN FAIR'
+              _reactRouter.Link,
+              { to: '/', className: 'header__logo' },
+              _react2.default.createElement('img', { src: themeDirectory + '/img/df.svg', className: 'header__logo-img', alt: 'Dan Fair' }),
+              _react2.default.createElement(
+                'span',
+                null,
+                'DAN FAIR'
+              )
+            ),
+            _react2.default.createElement(
+              'nav',
+              { className: 'header__nav' },
+              _react2.default.createElement(
+                'ul',
+                null,
+                this.state.menuItems
+              )
+            ),
+            _react2.default.createElement(
+              'a',
+              { onClick: this.toggleMenu, className: 'header__menu-icon' },
+              _react2.default.createElement('img', { src: themeDirectory + '/img/burg.svg' })
             )
-          ),
-          _react2.default.createElement(
-            'ul',
-            null,
-            this.state.menuItems
           )
-        )
+        ),
+        _react2.default.createElement('div', { className: this.state.mobileMenuIsOpen ? 'site-blocker is-open' : 'site-blocker' })
       );
     }
   }, {
