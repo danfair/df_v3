@@ -11,12 +11,20 @@ class Header extends Component {
   }
 
   render(props) {
+    let themeDirectory = 'wp-content/themes/danfair_v3';
+
     return (
-      <div>
-        <ul>
-          {this.state.menuItems}
-        </ul>
-      </div>
+      <nav>
+        <div>
+          <Link to={'/'}>
+            <img src={`${themeDirectory}/img/df.svg`} alt="Dan Fair" />
+            <span>DAN FAIR</span>
+          </Link>  
+          <ul>
+            {this.state.menuItems}
+          </ul>
+        </div>
+      </nav>
     );
   }
 

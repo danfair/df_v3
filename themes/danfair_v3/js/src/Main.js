@@ -4,6 +4,8 @@ import Page from './Page';
 import Header from './components/Header';
 import { browserHistory } from 'react-router';
 
+require('../../css/style.scss');
+
 class Main extends Component {
 
   constructor(props) {
