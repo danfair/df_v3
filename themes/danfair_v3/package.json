@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
+    "html-to-react": "^1.2.4",
     "node-sass": "^4.5.0",
     "path": "^0.12.7",
     "react": "^15.4.2",

@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class BigHero extends Component {
   render(props) {
+    const componentData = this.props.componentData;
+    // console.log(componentData);
     return (
-      <div>
-        <h1>Big Hero!</h1>
-      </div>
+      <section className="hero" id="hero" style={{backgroundImage: 'url(' + componentData.background_image + ')'}}>
+        <div className="container">
+          <div className="hero__content">
+            <h1 dangerouslySetInnerHTML={{ __html: componentData.description }} className="hero__title h2" />
+            <Link to={'/work'} className="btn btn--outline-orange js-scroll-link">See Work</Link>
+            <div className="hero__social-links">
+              {this.props.socialData.map((socialItem) => {
+                return (
+                  <a href={socialItem.link} className="hero__social-link" target="_blank">
+                    <img src={socialItem.icon.url} alt={socialItem.name} />
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
     );
   }
 }

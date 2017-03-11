@@ -51,4 +51,19 @@ body {
 	}
 }
 
+.page-content {
+	min-height: calc(100vh - 70px);
+}
+
+.screen-reader-text {
+	clip: rect(1px,1px,1px,1px);
+	position: absolute!important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+@import 'components/footer';
 @import 'components/header';
+@import 'components/hero';
+@import 'components/loader';

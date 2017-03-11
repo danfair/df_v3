@@ -13588,6 +13588,10 @@ var _Header = __webpack_require__(139);
 
 var _Header2 = _interopRequireDefault(_Header);
 
+var _Footer = __webpack_require__(269);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 var _reactRouter = __webpack_require__(69);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -13612,13 +13616,15 @@ var Main = function (_Component) {
       pagesData: null,
       pageContent: null,
       pageIsLoading: true,
-      pageId: null
+      pageId: null,
+      socialData: []
     };
 
     _reactRouter.browserHistory.listen(function (event) {
       var pathname = event.pathname.replace('/', '');
       _this.setState({
-        pageId: _this.getPageId(pathname)
+        pageId: _this.getPageId(pathname),
+        pageIsLoading: true
       }, _this.setPageContent);
     });
     return _this;
@@ -13633,6 +13639,13 @@ var Main = function (_Component) {
         _this2.setState({
           pagesData: response.data
         }, _this2.setPageContent);
+      });
+
+      _axios2.default.get('/wp-json/wp/v2/acf/options/social_links').then(function (response) {
+        console.log(response.data);
+        _this2.setState({
+          socialData: response.data
+        });
       });
     }
   }, {
@@ -13674,10 +13687,16 @@ var Main = function (_Component) {
         null,
         _react2.default.createElement(_Header2.default, { updatePageId: this.updatePageId }),
         this.state.pageIsLoading ? _react2.default.createElement(
-          'h1',
-          null,
-          'Loading...'
-        ) : _react2.default.createElement(_Page2.default, { pageContent: this.state.pageContent })
+          'div',
+          { className: 'loading-page' },
+          _react2.default.createElement(
+            'div',
+            { className: 'uil-ripple-css', style: { transform: 'scale(1)' } },
+            _react2.default.createElement('div', null),
+            _react2.default.createElement('div', null)
+          )
+        ) : _react2.default.createElement(_Page2.default, { pageContent: this.state.pageContent, socialData: this.state.socialData }),
+        _react2.default.createElement(_Footer2.default, { socialData: this.state.socialData })
       );
     }
   }]);
@@ -13736,6 +13755,8 @@ var Page = function (_Component) {
   _createClass(Page, [{
     key: 'render',
     value: function render(props) {
+      var _this2 = this;
+
       var flexibleContentComponents = {
         big_hero: _BigHero2.default,
         slab: _Slab2.default
@@ -13743,10 +13764,10 @@ var Page = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'page-content' },
         this.props.pageContent.map(function (pageComponent, index) {
           var TempComponent = flexibleContentComponents[pageComponent.acf_fc_layout];
-          return _react2.default.createElement(TempComponent, { key: index });
+          return _react2.default.createElement(TempComponent, { key: index, componentData: pageComponent, socialData: _this2.props.socialData });
         })
       );
     }
@@ -13774,6 +13795,8 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = __webpack_require__(69);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13794,13 +13817,35 @@ var BigHero = function (_Component) {
   _createClass(BigHero, [{
     key: 'render',
     value: function render(props) {
+      var componentData = this.props.componentData;
+      // console.log(componentData);
       return _react2.default.createElement(
-        'div',
-        null,
+        'section',
+        { className: 'hero', id: 'hero', style: { backgroundImage: 'url(' + componentData.background_image + ')' } },
         _react2.default.createElement(
-          'h1',
-          null,
-          'Big Hero!'
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'hero__content' },
+            _react2.default.createElement('h1', { dangerouslySetInnerHTML: { __html: componentData.description }, className: 'hero__title h2' }),
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { to: '/work', className: 'btn btn--outline-orange js-scroll-link' },
+              'See Work'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'hero__social-links' },
+              this.props.socialData.map(function (socialItem) {
+                return _react2.default.createElement(
+                  'a',
+                  { href: socialItem.link, className: 'hero__social-link', target: '_blank' },
+                  _react2.default.createElement('img', { src: socialItem.icon.url, alt: socialItem.name })
+                );
+              })
+            )
+          )
         )
       );
     }
@@ -14029,10 +14074,7 @@ var routes = _react2.default.createElement(
     _react2.default.createElement(_reactRouter.Route, { path: '/:pageSlug', component: _Main2.default })
   )
 );
-// import Services from '../components/Services';
-// import Home from '../components/Home';
-// import Work from '../components/Work';
-// import Contact from '../components/Contact';
+
 exports.default = routes;
 
 /***/ }),
@@ -28524,6 +28566,73 @@ module.exports = function (str) {
 
 module.exports = __webpack_require__(118);
 
+
+/***/ }),
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+  _inherits(Footer, _Component);
+
+  function Footer() {
+    _classCallCheck(this, Footer);
+
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+  }
+
+  _createClass(Footer, [{
+    key: "render",
+    value: function render(props) {
+      return _react2.default.createElement(
+        "footer",
+        { className: "footer" },
+        _react2.default.createElement(
+          "div",
+          { className: "container" },
+          _react2.default.createElement(
+            "div",
+            { className: "footer__social-links" },
+            this.props.socialData.length > 0 && this.props.socialData.map(function (socialItem) {
+              return _react2.default.createElement(
+                "a",
+                { href: socialItem.link, className: "hero__social-link", target: "_blank" },
+                _react2.default.createElement("img", { src: socialItem.icon.url, alt: socialItem.name })
+              );
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return Footer;
+}(_react.Component);
+
+exports.default = Footer;
 
 /***/ })
 /******/ ]);

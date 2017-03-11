@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Page from './Page';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import { browserHistory } from 'react-router';
 
 require('../../css/style.scss');
@@ -15,13 +16,15 @@ class Main extends Component {
       pagesData: null,
       pageContent: null,
       pageIsLoading: true,
-      pageId: null
+      pageId: null,
+      socialData: []
     };
 
     browserHistory.listen((event) => {
       let pathname = event.pathname.replace('/', '');
       this.setState({
-        pageId: this.getPageId(pathname)
+        pageId: this.getPageId(pathname),
+        pageIsLoading: true
       }, this.setPageContent);
     })
   }
@@ -33,6 +36,14 @@ class Main extends Component {
           pagesData: response.data
         }, this.setPageContent);
       });
+
+    axios.get('/wp-json/wp/v2/acf/options/social_links')
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          socialData: response.data
+        });
+      })
   }
 
   setPageContent() {
@@ -68,10 +79,13 @@ class Main extends Component {
       <div>
         <Header updatePageId={this.updatePageId} />
         {this.state.pageIsLoading ? (
-          <h1>Loading...</h1>
+          <div className="loading-page">
+            <div className='uil-ripple-css' style={{transform: 'scale(1)'}}><div></div><div></div></div>
+          </div>
         ) : (
-          <Page pageContent={this.state.pageContent} />
+          <Page pageContent={this.state.pageContent} socialData={this.state.socialData} />
         )}
+        <Footer socialData={this.state.socialData} />
       </div>
     );
   }
