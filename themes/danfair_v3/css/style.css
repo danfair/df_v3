@@ -146,7 +146,7 @@ body {
         display: none; } }
 
 .page-content {
-  min-height: calc(100vh - 70px); }
+  min-height: calc(100vh - 131px); }
 
 .screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
@@ -157,7 +157,7 @@ body {
 
 .footer {
   background-color: #d4d1d1;
-  padding: 25px 0;
+  padding: 15px 0 20px;
   text-align: center; }
 
 .footer__social-link {
@@ -278,13 +278,10 @@ body {
               color: #000; } }
 
 .hero {
-  height: calc(100vh - 50px);
+  height: calc(100vh - 131px);
   background-size: cover;
   background-position: top left;
   position: relative; }
-  @media only screen and (min-width: 640px) {
-    .hero {
-      height: calc(100vh - 70px); } }
 
 .hero__content {
   color: #fff;
@@ -321,14 +318,14 @@ body {
   .hero__social-link:nth-child(2) {
     margin: 0 25px 0 30px; }
   .hero__social-link img {
-    max-height: 30px;
-    max-width: 35px; }
+    max-height: 25px;
+    max-width: 30px; }
   .hero__social-link:last-child img {
-    max-height: 40px;
+    max-height: 35px;
     transform: translateY(-3px); }
 
 .loading-page {
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 131px);
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -473,7 +470,8 @@ body {
   background: none;
   position: relative;
   width: 200px;
-  height: 200px; }
+  height: 200px;
+  transform: translate(-12px, -27px) scale(1); }
 
 .uil-ripple-css div {
   position: absolute;
@@ -502,3 +500,22 @@ body {
   -webkit-animation-delay: 1s;
   -o-animation-delay: 1s;
   animation-delay: 1s; }
+
+.page-content__content {
+  opacity: 1;
+  transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1); }
+
+.loading-page {
+  opacity: 0;
+  transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; }
+
+.page-content--loading .page-content__content {
+  opacity: 0; }
+
+.page-content--loading .loading-page {
+  opacity: 0.9; }

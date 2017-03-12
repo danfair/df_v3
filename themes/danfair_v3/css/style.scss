@@ -52,7 +52,7 @@ body {
 }
 
 .page-content {
-	min-height: calc(100vh - 70px);
+	min-height: calc(100vh - 131px);
 }
 
 .screen-reader-text {
@@ -67,3 +67,28 @@ body {
 @import 'components/header';
 @import 'components/hero';
 @import 'components/loader';
+
+.page-content__content {
+	opacity: 1;
+	transition: opacity 2s $transition-ease;
+}
+
+.loading-page {
+	opacity: 0;
+	transition: opacity 2s $transition-ease;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	
+}
+.page-content--loading {
+	.page-content__content {
+		opacity: 0;
+	}
+
+	.loading-page {
+		opacity: 0.9;
+	}
+}

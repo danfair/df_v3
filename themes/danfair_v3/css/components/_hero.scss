@@ -1,12 +1,8 @@
 .hero {
-	height: calc(100vh - 50px);
+	height: calc(100vh - 131px);
 	background-size: cover;
 	background-position: top left;
 	position: relative;
-
-	@include responsive(small) {
-		height: calc(100vh - 70px);
-	}
 }
 
 	.hero__content {
@@ -55,13 +51,12 @@
 			}
 
 			img {
-				max-height: 30px;
-				max-width: 35px;
-
+				max-height: 25px;
+				max-width: 30px;
 			}
 
 			&:last-child img {
-				max-height: 40px;
+				max-height: 35px;
 				transform: translateY(-3px);
 			}
 		}
