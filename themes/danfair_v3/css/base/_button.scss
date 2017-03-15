@@ -51,6 +51,15 @@
 	}
 }
 
+.btn--outline-white {
+	border-color: $color-white;
+	color: $color-white;
+
+	&:hover {
+		background-color: $color-dark-gray;
+	}
+}
+
 .btn--no-outline {
 	border: 0;
 	color: $color-black;

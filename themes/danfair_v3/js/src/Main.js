@@ -7,7 +7,6 @@ import { browserHistory } from 'react-router';
 
 require('../../css/style.scss');
 
-
 class Main extends Component {
 
   constructor(props) {

@@ -3,7 +3,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
+	opacity: 0;
+	transition: opacity $transition-speed-slow $transition-ease;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+  pointer-events: none;
 }
+
+.page-content__content {
+	opacity: 1;
+	transition: opacity $transition-speed-slow $transition-ease;
+}
+
+  .page-content--loading {
+    .page-content__content {
+      opacity: 0;
+    }
+
+    .loading-page {
+      opacity: 0.9;
+    }
+  }
 
 @-webkit-keyframes uil-ripple {
   0% {

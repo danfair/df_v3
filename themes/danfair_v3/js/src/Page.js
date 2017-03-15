@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import BigHero from './components/BigHero';
 import Slab from './components/Slab';
+import PageHeader from './components/PageHeader';
+import PortfolioPieces from './components/PortfolioPieces';
+import SplitImageText from './components/SplitImageText';
+import ContactForm from './components/ContactForm';
 import { browserHistory } from 'react-router';
 
 class Page extends Component {
@@ -68,7 +72,11 @@ class Page extends Component {
   render(props) {
     const flexibleContentComponents = {
       big_hero: BigHero,
-      slab: Slab
+      slab: Slab,
+      page_header: PageHeader,
+      split_image_text: SplitImageText,
+      portfolio_pieces: PortfolioPieces,
+      contact_form: ContactForm
     };
 
     return (

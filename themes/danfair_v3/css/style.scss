@@ -4,6 +4,18 @@
 @import 'base/typography';
 @import 'base/button';
 
+*,
+*:before,
+*:after {
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(#000, 0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
 	padding-top: 50px;
 
@@ -63,32 +75,11 @@ body {
 	overflow: hidden;
 }
 
+@import 'components/contact-form';
 @import 'components/footer';
 @import 'components/header';
 @import 'components/hero';
 @import 'components/loader';
-
-.page-content__content {
-	opacity: 1;
-	transition: opacity 2s $transition-ease;
-}
-
-.loading-page {
-	opacity: 0;
-	transition: opacity 2s $transition-ease;
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	
-}
-.page-content--loading {
-	.page-content__content {
-		opacity: 0;
-	}
-
-	.loading-page {
-		opacity: 0.9;
-	}
-}
+@import 'components/page-header';
+@import 'components/portfolio-piece';
+@import 'components/split-image-text';

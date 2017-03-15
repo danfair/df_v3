@@ -59,7 +59,7 @@ class Header extends Component {
           menuItems: response.data.items.map((menuItem) => {
             return (
               <li key={menuItem.id}>
-                <Link to={menuItem.object_slug}>{menuItem.title}</Link>
+                <Link to={'/' + menuItem.object_slug}>{menuItem.title}</Link>
               </li>
             )
           })
